@@ -1,0 +1,50 @@
+.header {
+  min-width: 350px;
+  position: relative;
+  margin-bottom: 15px;
+  background: #30343c;
+  &__container {
+    height: 55px;
+    display: flex;
+    align-items: center;
+  }
+  &__logo {
+    width: 55px;
+    img {
+      border: none;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  &__search {
+    width: 350px;
+    input {
+      height: 35px;
+      margin-left: 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .header {
+    &__container {
+      padding: 0 9rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    &__container {
+      padding: 0 5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .header {
+    &__container {
+      padding: 0 2rem;
+    }
+  }
+}

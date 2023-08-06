@@ -1,0 +1,14 @@
+.slider {
+  padding: 0 20px;
+  height: 255px;
+  img {
+    border-radius: 10px;
+    height: 250px;
+  }
+}
+
+.slick-initialized .slick-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
