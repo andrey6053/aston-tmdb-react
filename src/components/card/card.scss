@@ -21,14 +21,42 @@
       line-height: 25px;
     }
     img {
-      width: 10.7em;
-      height: 14.5em;
+      height: 23em;
       float: left;
       margin-right: 15px;
       cursor: pointer;
       transition-duration: 0.5s;
       &:hover {
         scale: 1.07;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    a {
+      display: block;
+      overflow: hidden;
+      width: 250px;
+      text-overflow: ellipsis;
+      height: 430px;
+    }
+    align-items: center;
+    &__overview {
+      display: none;
+    }
+    &__date-release {
+      display: none;
+    }
+    &__title {
+      span {
+        width: 100%;
+      }
+    }
+    &__image {
+      img {
+        float: none;
       }
     }
   }

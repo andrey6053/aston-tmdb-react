@@ -1,26 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFilmsBySort, fetchSliderFilms } from "./filmsSlice";
+import { fetchFilmsBySort } from "./filmsSlice";
 
 const initialState = {
   isLoader: false,
   errors: [],
+  typePage: "movies",
 };
 const uiSlice = createSlice({
   name: "ui",
   initialState,
-  reducers: {},
+  reducers: {
+    setTypePage: (state, { payload }) => {
+      state.typePage = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSliderFilms.pending, (state) => {
-        state.isLoader = true;
-      })
-      .addCase(fetchSliderFilms.rejected, (state, { payload }) => {
-        state.isLoader = false;
-        state.errors.push(payload);
-      })
-      .addCase(fetchSliderFilms.fulfilled, (state) => {
-        state.isLoader = false;
-      })
       .addCase(fetchFilmsBySort.fulfilled, (state) => {
         state.isLoader = false;
       })
@@ -34,5 +29,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const { setLoader } = uiSlice.actions;
+export const { setTypePage } = uiSlice.actions;
 export default uiSlice.reducer;

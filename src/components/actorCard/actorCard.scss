@@ -1,0 +1,49 @@
+.actor {
+  border: 3px solid teal;
+  border-radius: 5px;
+  width: 450px;
+  img {
+    &:hover {
+      scale: 1;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__known-for {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    img {
+      cursor: pointer;
+      height: 200px;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .actor {
+    img {
+      float: none;
+    }
+    &__content {
+      display: block;
+    }
+    &__known-for {
+      img {
+        height: 200px;
+        float: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .actor {
+    &__known-for {
+      display: none;
+    }
+  }
+}

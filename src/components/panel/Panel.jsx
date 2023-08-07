@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./panel.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchFilmsBySort } from "../../store/reducers/filmsSlice";
 
 export default function Panel() {
   const dispatch = useDispatch();
   const [displayUl, setDisplayUl] = useState(false);
   const [select, setSelect] = useState({ textContent: "По умолчанию", value: "popularity.desc" });
+  const isLoader = useSelector((state) => state.ui.isLoader);
   function filtersHandler() {
     setDisplayUl(!displayUl);
   }
@@ -18,6 +19,7 @@ export default function Panel() {
     dispatch(fetchFilmsBySort(select.value));
   }, [select.value]);
   const { textContent, value } = select;
+  if (isLoader) return null;
   return (
     <div className="panel" onClick={filtersHandler}>
       <div className="panel__selected">{textContent}</div>

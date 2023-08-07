@@ -1,0 +1,46 @@
+.post {
+  &__body {
+    background-color: #30343c;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 500px;
+    opacity: 80%;
+  }
+  h1 {
+    color: #fff;
+  }
+  &__backdrop {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: calc(100vh - 55px);
+    object-fit: cover;
+  }
+  &__content {
+    padding: 15px 20px 40px 20px;
+    overflow: hidden;
+    span {
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 120%;
+      padding-bottom: 5px;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  &__poster {
+    position: relative;
+    float: left;
+    display: block;
+    clear: both;
+    width: 15em;
+    min-height: 18em;
+    margin: 15px;
+    z-index: 1;
+    img {
+      width: 15em;
+      float: left;
+      border-radius: 10px;
+    }
+  }
+}

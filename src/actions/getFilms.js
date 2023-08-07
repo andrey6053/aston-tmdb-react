@@ -8,7 +8,6 @@ export async function getSliderFilms() {
     const response = await axios.get("https://api.themoviedb.org/3/movie/popular");
     return response.data.results;
   } catch (e) {
-    toast.error(e.message);
     return [];
   }
 }
@@ -18,7 +17,7 @@ export async function getFilmsBySort(query) {
     const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=${query}`);
     return response.data.results;
   } catch (e) {
-    toast.error(e.message);
+    toast.error(`${e.message}, try use VPN`);
     return [];
   }
 }
@@ -27,6 +26,17 @@ export async function searchFilms(query) {
   try {
     const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${query}`);
     return response.data.results;
+  } catch (e) {
+    toast.error(e.message);
+    return [];
+  }
+}
+
+export async function getFilmById(id) {
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`);
+    localStorage.setItem("dataPageFilm", JSON.stringify(response.data));
+    return response.data;
   } catch (e) {
     toast.error(e.message);
     return [];
