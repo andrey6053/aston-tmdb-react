@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getSliderFilms, getFilmsBySort, searchFilms, getFilmById } from "../../actions/getFilms";
+import { getSliderFilms, getFilmsBySort, searchFilms, getFilmById, getFilmsList } from "../../actions/getFilms";
 
 export const fetchSliderFilms = createAsyncThunk("rocket/fetchSliderFilms", getSliderFilms);
 export const fetchFilmsBySort = createAsyncThunk("rocket/fetchFilmsBySort", getFilmsBySort);
+export const fetchFilmsList = createAsyncThunk("rocket/fetchFilmsList", getFilmsList);
 export const fetchFilmsBySearch = createAsyncThunk("rocket/fetchFilmsBySearch", searchFilms);
 export const fetchFilmById = createAsyncThunk("rocket/fetchFilmById", getFilmById);
 
@@ -24,6 +25,11 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilmsBySort.fulfilled, (state, { payload }) => {
         state.films = payload;
+        state.currentActor = null;
+      })
+      .addCase(fetchFilmsList.fulfilled, (state, { payload: { page, payload } }) => {
+        if (page === 1 && state.films.length !== 0) return;
+        state.films = [...state.films, ...payload];
         state.currentActor = null;
       })
       .addCase(fetchFilmsBySearch.fulfilled, (state, { payload }) => {

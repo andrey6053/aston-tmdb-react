@@ -17,9 +17,8 @@ const actorsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchActorsList.fulfilled, (state, { payload }) => {
-        state.actors = payload;
+        state.actors = [...state.actors, ...payload];
         state.currentActor = null;
-        console.log(state.currentActor);
       })
       .addCase(fetchActor.fulfilled, (state, { payload }) => {
         state.currentActor = payload;

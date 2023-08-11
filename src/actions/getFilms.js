@@ -11,11 +11,24 @@ export async function getSliderFilms() {
     return [];
   }
 }
-
-export async function getFilmsBySort(query) {
+export async function getFilmsBySort({ page, sort }) {
   try {
-    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=${query}`);
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sort}`
+    );
     return response.data.results;
+  } catch (e) {
+    toast.error(`${e.message}, try use VPN`);
+    return [];
+  }
+}
+
+export async function getFilmsList({ page, sort }) {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sort}`
+    );
+    return { page, payload: response.data.results };
   } catch (e) {
     toast.error(`${e.message}, try use VPN`);
     return [];

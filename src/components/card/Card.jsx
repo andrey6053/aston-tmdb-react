@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Card({ data, link }) {
   const { poster_path, title, overview, release_date, vote_average, id } = data;
-  if (!poster_path) return null;
+  if (!poster_path || !overview) return null;
   return (
     <section className="card">
       <div className="card__content">

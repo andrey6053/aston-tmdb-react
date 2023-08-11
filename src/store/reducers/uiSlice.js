@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFilmsBySort } from "./filmsSlice";
+import { fetchFilmsBySort, fetchFilmsList } from "./filmsSlice";
 
 const initialState = {
   isLoader: false,
@@ -21,6 +21,12 @@ const uiSlice = createSlice({
       })
       .addCase(fetchFilmsBySort.pending, (state) => {
         state.isLoader = true;
+      })
+      .addCase(fetchFilmsList.pending, (state) => {
+        state.isLoader = true;
+      })
+      .addCase(fetchFilmsList.fulfilled, (state) => {
+        state.isLoader = false;
       })
       .addCase(fetchFilmsBySort.rejected, (state, { payload }) => {
         state.isLoader = false;

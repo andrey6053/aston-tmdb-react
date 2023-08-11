@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./panel.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFilmsBySort } from "../../store/reducers/filmsSlice";
+import { fetchFilmsBySort, fetchFilmsList } from "../../store/reducers/filmsSlice";
 
-export default function Panel() {
+export default function Panel({ page }) {
   const dispatch = useDispatch();
   const [displayUl, setDisplayUl] = useState(false);
   const [select, setSelect] = useState({ textContent: "По умолчанию", value: "popularity.desc" });
@@ -16,7 +16,10 @@ export default function Panel() {
     setSelect({ textContent: target.textContent, value: target.dataset.value });
   }
   useEffect(() => {
-    dispatch(fetchFilmsBySort(select.value));
+    dispatch(fetchFilmsList({ page, sort: select.value }));
+  }, [page]);
+  useEffect(() => {
+    dispatch(fetchFilmsBySort({ page, sort: select.value }));
   }, [select.value]);
   const { textContent, value } = select;
   if (isLoader) return null;
